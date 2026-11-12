@@ -1,9 +1,9 @@
 # Arbeitsstand
 
-Stand 12.11.2026.
+Stand 13.11.2026.
 
 - Das Repository enthält die Aufgabenstellung für Assignment 1. Das PDF liegt lokal vor und wird im geprüften Git-Stand noch nicht verfolgt.
-- Der [Übungsordner für Assignment 1](../assignments/01/README.md) enthält ein mit TeX Live 2026 kompiliertes LaTeX-Grundgerüst für ein gemeinsames Protokoll mit fünf Aufgabenabschnitten. Die Abschnitte enthalten Platzhalter. Bearbeitungsstand außerhalb des Repositorys und Moodle-Abgabestatus sind unklar.
+- Das [Protokoll für Assignment 1](../assignments/01/main.tex) enthält die Herleitung zu Aufgabe 1. Aufgaben 2 bis 5 enthalten Platzhalter. Bearbeitungsstand außerhalb des Repositorys und Moodle-Abgabestatus sind unklar.
 - Die Kursinfo wurde geprüft. Namen und Matrikelnummern beider Teammitglieder stehen auf der Titelseite. Der Abgleich der Frist mit Moodle steht noch aus.
 
 ## Nächste Schritte

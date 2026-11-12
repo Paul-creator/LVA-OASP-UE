@@ -1,6 +1,70 @@
 % !TEX root = ../../main.tex
 \section{Gradient of a quadratic form}
 
-% (a) Expand the quadratic form as two sums.
-% (b) Give the componentwise derivation of the gradient.
-\emph{Derivation to be added.}
+Consider the quadratic form
+\[
+  f(\mathbf{x}) = \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x},
+  \qquad \mathbf{x}\in\mathbb{R}^{N},\quad
+  \mathbf{A}\in\mathbb{R}^{N\times N}.
+\]
+The symmetry condition is
+\[
+  \mathbf{A} = \mathbf{A}^{\mathsf T}
+  \quad\Longleftrightarrow\quad
+  A_{ij} = A_{ji} \quad \forall\, i,j.
+\]
+We want to show that
+\[
+  \nabla_{\mathbf{x}} f = 2\mathbf{A}\mathbf{x}.
+\]
+
+\subsection*{(a) Expansion in components}
+
+Let \(x_i\) be the \(i\)-th component of \(\mathbf{x}\) and \(A_{ij}\)
+the entry in row \(i\), column \(j\) of \(\mathbf{A}\). The \(i\)-th
+component of the matrix-vector product is
+\[
+  (\mathbf{A}\mathbf{x})_i = \sum_{j=1}^{N} A_{ij}x_j.
+\]
+Substituting this into the scalar product gives
+\begin{align*}
+  f(\mathbf{x}) = \mathbf{x}^{\mathsf T}\mathbf{A}\mathbf{x}
+  &= \sum_{i=1}^{N} x_i(\mathbf{A}\mathbf{x})_i \\
+  &= \sum_{i=1}^{N} x_i \left(\sum_{j=1}^{N} A_{ij}x_j\right) \\
+  &= \sum_{i=1}^{N}\sum_{j=1}^{N} x_i A_{ij}x_j.
+\end{align*}
+
+\subsection*{(b) Gradient}
+
+Fix \(k \in \{1,\ldots,N\}\). Since the entries \(A_{ij}\) are constant,
+the product rule gives
+\begin{align*}
+  \frac{\partial f}{\partial x_k}
+  &= \sum_{i=1}^{N}\sum_{j=1}^{N}
+       A_{ij}\frac{\partial(x_i x_j)}{\partial x_k} \\
+  &= \sum_{i=1}^{N}\sum_{j=1}^{N} A_{ij}
+       \left(\frac{\partial x_i}{\partial x_k}x_j
+             + x_i\frac{\partial x_j}{\partial x_k}\right) \\
+  &= \sum_{i=1}^{N}\sum_{j=1}^{N} A_{ij}
+       \left(\delta_{ik}x_j+x_i\delta_{jk}\right)
+       \quad
+       \left(\frac{\partial x_i}{\partial x_k}
+       = \delta_{ik}
+       = \begin{cases}
+           1, & i=k,\\
+           0, & i\ne k
+         \end{cases}\right) \\
+  &= \sum_{j=1}^{N} A_{kj}x_j + \sum_{i=1}^{N} A_{ik}x_i.
+\end{align*}
+The first delta selects row \(k\) and the second
+selects column \(k\). By symmetry, \(A_{ik}=A_{ki}\), so
+\[
+  \frac{\partial f}{\partial x_k}
+  = \sum_{j=1}^{N} A_{kj}x_j + \sum_{i=1}^{N} A_{ki}x_i
+  = 2\sum_{j=1}^{N} A_{kj}x_j
+  = 2(\mathbf{A}\mathbf{x})_k.
+\]
+Stacking these components yields the column gradient
+\[
+  \boxed{\nabla_{\mathbf{x}} f = 2\mathbf{A}\mathbf{x}.}
+\]
