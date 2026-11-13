@@ -1,4 +1,21 @@
 % !TEX root = ../../main.tex
 \section{The variance}
 
-\emph{Proof to be added.}
+Let \(X\) be a real-valued random variable with finite second moment
+and let \(\mu=\mathbb{E}[X]\). We want to show that
+\[
+  \operatorname{Var}(X)=\mathbb{E}[X^2]-(\mathbb{E}[X])^2.
+\]
+
+Starting from the definition of variance, we expand the square
+and use linearity of expectation:
+\begin{align*}
+  \operatorname{Var}(X)
+  &= \mathbb{E}[(X-\mu)^2]
+    \qquad  \bigl(\mathbb{E}[X]=\mu) \\
+  &= \mathbb{E}[X^2-2\mu X+\mu^2] \\
+  &= \mathbb{E}[X^2]-2\mu\mathbb{E}[X]+\mathbb{E}[\mu^2] \\
+  &= \mathbb{E}[X^2]-2\mu^2+\mu^2 \\
+  &= \mathbb{E}[X^2]-\mu^2 \\
+  &= \boxed{\mathbb{E}[X^2]-(\mathbb{E}[X])^2}.
+\end{align*}

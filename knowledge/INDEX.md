@@ -4,7 +4,7 @@ Das Repository dient der Bearbeitung der Übung zu Optimum and Adaptive Signal P
 
 ## Dokumentationskarte
 
-- [Entscheidungen und Vorgaben](decisions.md)
+- [Entscheidungen, Kursvorgaben und Stil für die Lösungen](decisions.md)
 - [Arbeitsstand und nächste Schritte](status.md)
 - [Belegte Erkenntnisse und Aussagegrenzen](findings.md)
 
