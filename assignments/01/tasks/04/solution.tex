@@ -1,5 +1,46 @@
 % !TEX root = ../../main.tex
 \section{Covariance and correlation of linearly dependent variables}
 
-% Derive the covariance and correlation, then consider both signs of a.
-\emph{Derivation to be added.}
+Let \(X\) be a real-valued random variable with \(\mathbb{E}[X]=0\)
+and finite second moment. For \(Y=aX+b\), with constants \(a,b\in\mathbb{R}\),
+we derive \(\operatorname{Cov}(X,Y)\) and find the correlation for
+positive and negative \(a\).
+
+\subsection*{Covariance}
+
+First, \(\mathbb{E}[Y]=a\mathbb{E}[X]+b=b\), so centering \(Y\) gives
+\(Y-\mathbb{E}[Y]=aX\). Hence
+\begin{align*}
+  \operatorname{Cov}(X,Y)
+  &= \mathbb{E}\bigl[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])\bigr] \\
+  &= \mathbb{E}\bigl[(X-0)\bigl((aX+b)-b\bigr)\bigr] \\
+  &= \mathbb{E}[X\cdot aX] \\
+  &= a\mathbb{E}[X^2] \\
+  &= \boxed{a\operatorname{Var}(X)},
+     \qquad \bigl(\mathbb{E}[X]=0\bigr).
+\end{align*}
+
+\subsection*{Correlation coefficient}
+
+To obtain the standard deviation of \(Y\), we use the same centered form.
+\begin{align*}
+  \operatorname{Var}(Y)
+  &= \mathbb{E}\bigl[(Y-\mathbb{E}[Y])^2\bigr] \\
+  &= \mathbb{E}\bigl[(aX)^2\bigr] \\
+  &= a^2\operatorname{Var}(X).
+\end{align*}
+Writing \(\sigma_X=\sqrt{\operatorname{Var}(X)}\) and
+\(\sigma_Y=\sqrt{\operatorname{Var}(Y)}\) gives
+\(\sigma_Y=|a|\sigma_X\). For \(a\ne 0\) and \(\sigma_X>0\),
+\begin{align*}
+  \rho_{X,Y}
+  &= \frac{\operatorname{Cov}(X,Y)}{\sigma_X\sigma_Y} \\
+  &= \frac{a\sigma_X^2}{|a|\sigma_X^2} \\
+  &= \frac{a}{|a|}
+   = \boxed{\begin{cases}
+        -1, & a<0, \\
+        +1, & a>0.
+      \end{cases}}
+\end{align*}
+If \(a=0\) or \(\sigma_X=0\), the denominator is zero and the
+correlation coefficient is undefined.
