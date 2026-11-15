@@ -13,9 +13,13 @@ die Angaben zum Blatt und zum Team sowie die Reihenfolge der Aufgaben.
 ## PDF bauen
 
 Im Ordner dieses Aufgabenblatts mit TeX Live oder MacTeX ausführen.
+Die mitgelieferte `latexmkrc` ergänzt den Suchpfad für lokale TeX-Pakete
+automatisch; eine manuelle Umgebungsvariable ist nicht erforderlich.
+In VS Code ist die LaTeX-Workshop-Rezeptur `latexmk (LuaLaTeX)` dafür
+konfiguriert und wird beim Speichern mit Strg+S ausgeführt.
 
 ```sh
-latexmk -pdf -halt-on-error -outdir=build main.tex
+latexmk -lualatex -halt-on-error -outdir=build main.tex
 ```
 
 Das gemeinsame PDF liegt danach unter `build/main.pdf`.

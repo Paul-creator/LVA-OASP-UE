@@ -1,0 +1,147 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesPackage{exercises}
+
+\PassOptionsToPackage{dvipsnames}{xcolor}
+
+\RequirePackage[
+    techreport,
+    nofancyfonts,
+    equalmargins,
+    nocompactverb,
+    TNF
+]{jkureport}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Font
+
+\AtBeginDocument{
+    \subtitle{Optimum and Adaptive Signal Processing Systems\\WS 2026}
+    \author{Simon Grundner\matno{12136610} \and Paul Kronegger\matno{k12344729}}
+    \partnerlogo{logos/isp}
+}
+
+\RequirePackage{fontspec}
+\RequirePackage{unicode-math}
+
+\setmainfont{TimesNew Roman}
+\setmathfont{Latin Modern Math}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section numbering
+
+\renewcommand\thesubsection{\alph{subsection}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Colors
+
+\RequirePackage[table]{xcolor}
+
+\definecolor{Accent}{HTML}{56949f}
+\definecolor{Blue1}{HTML}{56949f}
+\definecolor{Blue2}{HTML}{286983}
+\definecolor{Red1}{HTML}{d7827e}
+\definecolor{Red2}{HTML}{b4637a}
+\definecolor{Magenta1}{HTML}{907aa9}
+\definecolor{Magenta2}{HTML}{575279}
+\definecolor{Gray1}{HTML}{cecacd}
+\definecolor{Gray2}{HTML}{9893a5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Math
+
+% with the unicode-math package
+\renewcommand{\vec}[1]{\symbf{#1}}
+\newcommand{\aug}[1]{\underline{\vec{#1}}}
+\newcommand{\mat}[1]{\symbf{#1}}
+\newcommand{\E}[1]{\mathrm{E}\left\{#1\right\}}
+\newcommand{\Var}[1]{\mathrm{Var}\left\{#1\right\}}
+\newcommand{\Cov}[2]{\mathrm{Cov}\left\{#1,#2\right\}}
+\newcommand{\Corr}[2]{\mathrm{Corr}\left\{#1,#2\right\}}
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[2][2]{\lVert#2\rVert_{#1}}
+\newcommand{\D}{\mathrm{d}}
+\renewcommand{\Re}[1]{\mathrm{Re}\left\{#1\right\}}
+\renewcommand{\Im}[1]{\mathrm{Im}\left\{#1\right\}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\I}{\mathbf{I}}
+\newcommand{\DefinedBy}{\triangleq}
+\newcommand{\ppart}[2][]{\frac{ \partial #1}{ \partial #2}}
+\newcommand{\expj}[2][]{e^{#1\jmath #2}}
+
+\newcommand{\ForRange}[2]{\For{#1 \textbf{to} #2}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% tables
+
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% tcolorboxes
+%% Examples: https://www.overleaf.com/project/6ac79b02f0f8ed56bc71e688
+
+\definecolor{TitleColor}{HTML}{0d0d0d}
+\definecolor{Dark}{HTML}{9893a5}
+\newtcolorbox{theorem-block}[1][]{
+    enhanced,
+    title={\textcolor{TitleColor}{#1}},
+    colbacktitle=Gray1,
+    colframe=white,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{Gray2},
+    arc=0pt,
+    left=18pt,
+    right=12pt,
+    top=10pt,
+    bottom=10pt,
+    width=\linewidth, 
+}
+
+
+\newtcolorbox{definition-block}[1][]{
+    enhanced,
+    title={\textcolor{TitleColor}{#1}},
+    colbacktitle=Gray1,
+    colframe=white,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{Gray2},
+    arc=0pt,
+    left=18pt,
+    right=12pt,
+    top=10pt,
+    bottom=10pt,
+    width=\linewidth, 
+}
+
+\newtcolorbox{note-block}{
+    enhanced,
+    colback=Gray1,
+    colframe=white,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{Gray2},
+    arc=0pt,
+    left=18pt,
+    right=12pt,
+    top=10pt,
+    bottom=10pt,
+    width=\linewidth, 
+}
+
+\newtcolorbox{summary-block}{
+    enhanced,
+    colframe=white,
+    boxrule=0pt,
+    borderline west={2pt}{0pt}{Gray2},
+    arc=0pt,
+    left=18pt,
+    right=12pt,
+    top=10pt,
+    bottom=10pt,
+    width=\linewidth, 
+}
+
+\newtcolorbox{boxed-block}{
+    colback=white,
+    opacityback=1.0,
+    colframe=Magenta1,
+}

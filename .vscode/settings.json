@@ -1,0 +1,50 @@
+
+{
+    "files.exclude" : {
+        "**/*." : true,
+        "**/*.synctex(busy)" : true,
+        "**/*.fls" : true,
+        "**/*.fdb_latexmk" : true,
+        "**/*.blg" : true,
+        "**/*.bcf" : true,
+        "**/*.bbl" : true,
+        "**/*-SAVE-ERROR" : true,
+        "**/*.aux" : true,
+        "**/*.log" : true,
+        "**/*.synctex.gz" : true,
+        "**/*.toc" : true,
+        "**/*.run.xml" : true,
+        "**/*.pdf.bkp" : true,
+        "**/*.png.bkp" : true,
+        "**/*.asv" : true,
+        "**/*.tdo" : true,
+        "**/*.out" : true
+    },
+    "latex-workshop.latex.outDir": "%DIR%",
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.recipe.default": "latexmk (LuaLaTeX)",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk (LuaLaTeX)",
+            "command": "latexmk",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
+                "-halt-on-error",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "cwd": "%DIR%"
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk (LuaLaTeX)",
+            "tools": [
+                "latexmk (LuaLaTeX)"
+            ]
+        }
+    ]
+}
