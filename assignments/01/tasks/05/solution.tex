@@ -4,4 +4,31 @@
 % (a) Plot births against stork counts.
 % (b) Calculate and interpret the first correlation.
 % (c) Calculate the area--stork correlation and compare.
-\emph{Plot, calculations, and interpretation to be added.}
+
+
+\subsection{Birthrate vs. Storks in a Country}
+
+The Datapoints for Storks over the Birthrate is displayed in \autoref{fig:storks-vs-birth}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{StorksOverBirth.pdf}
+    \caption{Child Birthrate over Storks in a Country}\label{fig:storks-vs-birth}
+\end{figure}
+
+\subsection{Correlation Coefficient, Storks vs. Childbirth}\label{sec:s-c}
+
+The Correlation of the two measurement sets has been calculated in MATLAB with \lstinline{corrcoef} and yields
+\[
+\rho_{S,B} = 0.9162
+\]
+
+The high correlation could be explained, because a larger Area of a country has more living room for both humans and storks. More humans would lead to a higher birthrate, so the both variables indirectly linked to each other, so the correlation is spurious.
+
+\subsection{Correlation Coefficient, Storks vs. Country Area}
+
+The correlation coefficient between Storks and Country Area is also positive and quite high with
+\[
+\rho_{S,A} = 0.5773
+\]
+which could confirm the observation from \autoref{sec:s-c}.
