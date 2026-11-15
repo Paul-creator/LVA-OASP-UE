@@ -18,3 +18,17 @@
 - Jedes Team bearbeitet das Aufgabenblatt eigenständig. Herleitungen, Diagramme und Antworten gehören in ein gemeinsames Protokoll pro Team. Das Blatt verweist für Details auf `course info.pdf`. [Assignment 1, S. 1](../Assignment1.pdf#page=1)
 - Laut Aufgabenblatt ist die Abgabe am Donnerstag, 19.11.2026, um 08:00 Uhr per Moodle-Upload fällig. [Assignment 1, S. 1](../Assignment1.pdf#page=1)
 - Laut `course_info.pdf` (Abschnitt „Submission“) lädt jedes Zweierteam ein ZIP mit einem gemeinsamen PDF samt Titelseite und den Skripten hoch. ZIP und PDF folgen dem Namensschema `OASP UE Assignment<i> <MatNr1> <MatNr2>`. Auf dem Deckblatt von Assignment 1 muss das Team klar ersichtlich sein. Der Quellcode gehört in die Skriptdateien.
+
+## Standardisierte Mathematiknotation
+
+- Alle in [typesetting/exercises.sty](../typesetting/exercises.sty) definierten Befehle sind die bevorzugte LaTeX-Notation für neue mathematische Ausdrücke.
+- Für Vektoren gilt: Kleinbuchstaben als Vektoren mit `\vec{...}`. Beispiel: `\vec{x}`, `\vec{y}`.
+- Für Matrizen gilt: Großbuchstaben als Matrizen mit `\mat{...}`. Beispiel: `\mat{A}`, `\mat{X}`.
+- Erwartungswert: `\E{...}` statt `\mathbb{E}[...]`.
+- Varianz: `\Var{...}` statt `\operatorname{Var}(...)` oder `\mathrm{Var}(...)`.
+- Kovarianz: `\Cov{a}{b}` statt `\operatorname{Cov}(a,b)`.
+- Korrelation: `\Corr{a}{b}` statt `\operatorname{Corr}(a,b)`.
+- Betragsfunktion: `\abs{...}` statt `|...|` bzw. `\left|...\right|`.
+- Partielle Ableitungen: `\ppart[f]{x}` statt `\frac{\partial f}{\partial x}`. Das erste optionale Argument ist die Funktion, das zweite die Variable.
+- Standardmengen und Operatoren: `\R`, `\C`, `\T`, `\D`, `\I`.
+- Für die Dokumentation und alle zukünftigen Aufgaben gilt: Wenn in einem Prompt oder in einer Aufgabenstellung nach mathematischer Notation gefragt wird, sollen die Paketbefehle aus [typesetting/exercises.sty](../typesetting/exercises.sty) verwendet werden, bevor auf Standard-LaTeX-Primitive zurückgegriffen wird.
