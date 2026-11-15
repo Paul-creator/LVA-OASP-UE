@@ -29,7 +29,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Section numbering
 
-\renewcommand\thesubsection{\alph{subsection}}
+\renewcommand\thesubsection{(\alph{subsection})}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Colors
@@ -52,7 +52,7 @@
 % with the unicode-math package
 \renewcommand{\vec}[1]{\symbf{#1}}                       % Vectors
 \newcommand{\mat}[1]{\symbf{#1}}                         % Matrices
-\newcommand{\E}[1]{\mathrm{E}\left\{#1\right\}}          % Expected Value Operator
+\newcommand{\E}[1]{\mathbb{E}\left\{#1\right\}}          % Expected Value Operator
 \newcommand{\Var}[1]{\mathrm{Var}\left\{#1\right\}}      % Variance
 \newcommand{\Cov}[2]{\mathrm{Cov}\left\{#1,#2\right\}}   % Covariance
 \newcommand{\Corr}[2]{\mathrm{Corr}\left\{#1,#2\right\}} % Correlation
@@ -68,7 +68,6 @@
 \newcommand{\ppart}[2][]{\frac{ \partial #1}{ \partial #2}} % Partial Derivative Operator. Mandatory Parameter: differentiation variable. Optional parameter: Value in the numerator.
 \newcommand{\expj}[2][]{e^{#1\jmath #2}}                 % Complex Exponential. The Optional parameter may be used to place a - sign before the imaginary j
 \newcommand{\T}{\mathsf{T}}                              % Transpose T
-\newcommand{\H}{\mathsf{H}}                              % Hermitian Transpose H
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% tables
