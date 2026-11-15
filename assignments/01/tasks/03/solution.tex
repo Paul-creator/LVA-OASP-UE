@@ -6,4 +6,188 @@
 % (c) Mean vector
 % (d) Covariance matrix
 % (e) Correlation coefficient
-\emph{Sketches and calculations to be added.}
+
+The PMF of the random vector $\vec{X} = [X_1, X_2]$ is given in the \autoref{tab:joint-pmf} which is visualized in \autoref{fig:joint-pmf}. 
+\begin{table}[h]
+    \centering
+    \caption{Joint PMF $p_{\vec{X}}[x_1, x_2]$}\label{tab:joint-pmf}
+    \begin{tabular}{c|ccc}
+        & $x_2 = 0$ & $x_2=1$ & $x_2=2$ \\ \hline
+        $x_1=0$ & $\frac{1}{8}$ & $0$ & $\frac{1}{4}$ \\
+        $x_1=1$ & $0$ & $\frac{1}{8}$ & $\frac{1}{4}$ \\
+        $x_1=2$ & $\frac{1}{8}$ & $0$ & $\frac{1}{8}$
+    \end{tabular}
+\end{table}
+The Sample Space of the Random Variables is
+\[
+    S_{X_1} = \{0,1,2\} \qquad S_{X_2} = \{0,1,2\} \qquad S_{\vec{Y}} = S_{X_1} \times S_{X_2}
+\]
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.4\textwidth]{JointPMF_L.pdf}
+    \caption{Joint PMF $p_{\vec{X}}[x_1, x_2]$}\label{fig:joint-pmf}
+\end{figure}
+
+\subsection{Marginal PMFs}
+
+The Marginal PMFs $p_{X_1}[x_{1}]$ and $p_{X_2}[x_{2}]$ are calculated with \autoref{eq:marginal-px1} and \autoref{eq:marginal-px2} respectively.
+\begin{align}
+    p_{X_1}[x_{1}] = \sum_{x_{2} \in S_{X_2}} p_{\vec{X}}[x_1, x_2] \label{eq:marginal-px1}\\
+    p_{X_2}[x_{2}] = \sum_{x_{1} \in S_{X_1}} p_{\vec{X}}[x_1, x_2] \label{eq:marginal-px2}
+\end{align}
+
+Meaning for each instance of $x_n$, we sum over all the other probabilities. This can be best show by reconsidering the PMF and summing over the rows or columns in \autoref{tab:marginal-pmf}.
+
+\begin{table}[h]
+    \centering
+    \caption{Calculation of Marginals}\label{tab:marginal-pmf}
+    \begin{tabular}{c|ccc|c}
+        & $x_2 = 0$ & $x_2=1$ & $x_2=2$ & $p_{X_1}[x_1]$ \\ \hline
+        $x_1=0$ & $\tfrac{1}{8}$ & $0$ & $\tfrac{1}{4}$ & $\tfrac{3}{8}$ \\
+        $x_1=1$ & $0$ & $\frac{1}{8}$ & $\tfrac{1}{4}$ & $\tfrac{3}{8}$ \\
+        $x_1=2$ & $\tfrac{1}{8}$ & $0$ & $\tfrac{1}{8}$ & $\tfrac{1}{4}$ \\ \hline
+        $p_{X_2}[x_2]$ & $\tfrac{1}{4}$ & $\tfrac{1}{8}$ & $\tfrac{5}{8}$
+    \end{tabular}
+\end{table}
+
+The marginals are plotted in \autoref{fig:marginals}.
+
+\begin{figure}[h]
+    \centering
+    \begin{subfigure}[c]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{MarginalPMF-X2.pdf}
+        \caption{$p_{X2}$}
+    \end{subfigure}\hfill$\impliedby$\hfill
+    \begin{subfigure}[c]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{JointPMF.pdf}
+        \caption{Joint}
+    \end{subfigure}\hfill$\implies$\hfill
+    \begin{subfigure}[c]{0.3\textwidth}
+        \centering
+        \includegraphics[width=\linewidth]{MarginalPMF-X1.pdf}
+        \caption{$p_{X1}$}
+    \end{subfigure}
+    \caption{Marginal Distributions}\label{fig:marginals}
+\end{figure}
+
+\subsection{Conditional PMF}
+
+The Conditional PMF $p_{X_2|X_1}[x_{2}|x_{1}]$ is given by \autoref{eq:conditional}.
+\begin{equation}
+    p_{X_2|X_1}[x_{2}|x_{1}] = \frac{p_{\vec{X}}[x_1, x_2]}{p_{X_1}[x_1]} \label{eq:conditional}
+\end{equation}
+
+From \autoref{tab:marginal-pmf} we know, that $p_{X_1}[x_1 = 1] = \frac{3}{4}$. Finally, we take the row in the PMF where $x_1=1$ and get
+\[
+    p_{X_2|X_1}[x_{2}|x_{1}=1] = \frac{p_{\vec{X}}[x_1=1, x_2]}{p_{X_1}[x_1=1]} = \begin{bmatrix}
+        0 & \tfrac{1}{3} & \tfrac{2}{3}
+    \end{bmatrix}
+\]
+
+\begin{figure}
+\centering
+\hfill
+\begin{minipage}{.4\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{ConditionalPMF-X2X1.pdf}
+    \caption{Conditional PMF, where $x_1$ is given as $x_1 = 1$.}\label{fig:conditional-pmf}
+\end{minipage}\hfill
+\begin{minipage}{.4\textwidth}
+    \centering
+    \includegraphics[width=0.9\textwidth]{PMFWithMeanStem.pdf}
+    \caption{Joint PMF with the mean vector plotted}\label{fig:pmf-with-mean}
+\end{minipage}
+\hfill
+\end{figure}
+
+\subsection{Mean Vector}
+
+The mean is the first statistical order, which for each random variable in the random vector $\vec X$ is given by:
+\[
+\mu_{X_n} = \E{X_n} \DefinedBy \sum_{x_n \in S_{X_n}} x_n p_{X_n}[x_n]
+\]
+
+The complete mean vector is then 
+\[
+\vec{\mu}_{\vec{X}} = \begin{bmatrix}
+    \mu_{X_1} \\
+    \mu_{X_2}
+\end{bmatrix} = \begin{bmatrix}
+    \tfrac{7}{8} \\
+    \tfrac{11}{8}
+\end{bmatrix}
+\]
+
+\subsection{Auto-Covariance Matrix}
+
+The Auto-Covariance Matrix is defined by
+\begin{align}
+    \mat{C}_{\vec{XX}}
+    &= \E{(\vec{X} - \E{X}){(\vec{X} - \E{X})}^{\T}} \notag \\
+    &= \E{(\vec{X} - \vec{\mu}_{\vec{X}}){(\vec{X} - \vec{\mu}_{\vec{X}})}^{\T}} \label{eq:auto-cov-mtx}
+\end{align}
+For easier Calculations, we normalize $\vec{X}$ in the first order moment.
+\[
+\vec{Y} = \vec{X} - \vec{\mu}_{\vec{X}} = \begin{bmatrix}
+    X_1 - \mu_{X_1} \\
+    X_2 - \mu_{X_2}
+\end{bmatrix}
+\]
+so the Sample space and the PMF (see \autoref{tab:joint-pmf-y}) become
+\[
+    S_{Y_1} = \{-\tfrac{7}{8}, \tfrac{1}{8}, \tfrac{9}{8}\} \qquad S_{Y_2} = \{-\tfrac{11}{8}, -\tfrac{3}{8}, \tfrac{5}{8}\} \qquad S_{\vec{Y}} = S_{Y_1} \times S_{Y_2}
+\]
+\begin{table}[h]
+    \centering
+    \caption{Joint PMF $p_{\vec{Y}}[y_1, y_2]$}\label{tab:joint-pmf-y}
+    \begin{tabular}{c|ccc}
+        & $y_2 = -\tfrac{11}{8}$ & $y_2=-\tfrac{3}{8}$ & $y_2=\tfrac{5}{8}$ \\ \hline
+        $y_1=-\tfrac{7}{8}$ & $\frac{1}{8}$ & $0$ & $\frac{1}{4}$ \\
+        $y_1=\tfrac{1}{8}$ & $0$ & $\frac{1}{8}$ & $\frac{1}{4}$ \\
+        $y_1=\tfrac{9}{8}$ & $\frac{1}{8}$ & $0$ & $\frac{1}{8}$
+    \end{tabular}
+\end{table}
+
+Now, the PMF has its center of mass around the origin, because the mean vector of $\vec{Y}$ is zero. To calculate the Auto-Covariance Matrix, we expand the 
+\begin{align*}
+    \mat{C}_{\vec{XX}} = \E{\vec{Y}\vec{Y^{\T}}}
+    &= \sum_{y_1 \in S_{Y_1}}\sum_{y_2 \in S_{Y_2}} \vec{yy}^\T p_{\vec{Y}}[y_1,y_2] \\
+    &= \sum_{y_1 \in S_{Y_1}}\sum_{y_2 \in S_{Y_2}} [y_1 y_2][y_1 y_2]^\T p_{\vec{Y}}[y_1,y_2] \\
+    &= \sum_{y_1 \in S_{Y_1}}\sum_{y_2 \in S_{Y_2}} \begin{bmatrix}
+        y_1y_1 & y_1y_2 \\ y_2y_1 & y_2y_2
+    \end{bmatrix} p_{\vec{Y}}[y_1,y_2] 
+\end{align*}
+So for each element in the auto-covariance Matrix, we get
+\[
+    \E{Y_i Y_j} = \sum_{y_1 \in S_{Y_1}}\sum_{y_2 \in S_{Y_2}} y_i y_j p_{\vec{Y}}[y_1,y_2]
+\]
+Computing the Covariance Matrix in MATLAB we receive
+\begin{equation}
+    \mat{C}_{\vec{XX}} = \begin{bmatrix}
+        0.609375 & -0.078125 \\
+        -0.078125 & 0.734375
+    \end{bmatrix} = \begin{bmatrix}
+        \sfrac{39}{64} & \sfrac{-5}{64} \\
+        \sfrac{-5}{64} & \sfrac{47}{64}
+    \end{bmatrix}
+\end{equation}
+
+\subsection{Correlation Coefficient}
+
+The correlation coefficient is given by 
+\begin{equation}
+    \rho_{X_1,X_2} = \frac{\Cov{X_1}{X_2}}{\sqrt{\Var{X_1}\Var{X_2}}}
+\end{equation}
+because 
+\begin{equation}
+    \mat{C}_{\vec{XX}} = \begin{bmatrix}
+        \Var{X_1} & \Cov{X_1}{X_2} \\
+        \Cov{X_2}{X_1} & \Var{X_2}
+    \end{bmatrix}
+\end{equation}
+We can use the values from the auto correlation matrix and calculate the correlation coefficient straight away
+\[
+    \rho_{X_1,X_2} = -\frac{\tfrac{5}{64}}{\sqrt{\tfrac{39}{64}\tfrac{47}{64}}} = -\frac{5}{\sqrt{39\cdot47}} \approx -0.116785
+\]

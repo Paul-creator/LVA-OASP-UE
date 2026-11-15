@@ -11,6 +11,10 @@
     TNF
 ]{jkureport}
 
+\RequirePackage{subcaption}
+\RequirePackage{xfrac}
+\RequirePackage{diagbox}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Font
 
@@ -52,15 +56,15 @@
 % with the unicode-math package
 \renewcommand{\vec}[1]{\symbf{#1}}                       % Vectors
 \newcommand{\mat}[1]{\symbf{#1}}                         % Matrices
-\newcommand{\E}[1]{\mathbb{E}\left\{#1\right\}}          % Expected Value Operator
-\newcommand{\Var}[1]{\mathrm{Var}\left\{#1\right\}}      % Variance
-\newcommand{\Cov}[2]{\mathrm{Cov}\left\{#1,#2\right\}}   % Covariance
-\newcommand{\Corr}[2]{\mathrm{Corr}\left\{#1,#2\right\}} % Correlation
+\newcommand{\E}[1]{\mathbb{E}\left[#1\right]}          % Expected Value Operator
+\newcommand{\Var}[1]{\mathrm{Var}\left[#1\right]}      % Variance
+\newcommand{\Cov}[2]{\mathrm{Cov}\left[#1,#2\right]}   % Covariance
+\newcommand{\Corr}[2]{\mathrm{Corr}\left[#1,#2\right]} % Correlation
 \newcommand{\abs}[1]{\left|#1\right|}                    % Absolute Value
 \newcommand{\norm}[2][2]{\lVert#2\rVert_{#1}}            % Norm
 \newcommand{\D}{\mathrm{d}}                              % "Differential" upright d. Use in Integrals and the ordinary derivative
-\renewcommand{\Re}[1]{\mathrm{Re}\left\{#1\right\}}      % Real Part of a complex variable
-\renewcommand{\Im}[1]{\mathrm{Im}\left\{#1\right\}}      % Imaginary Part of a complex variable
+\renewcommand{\Re}[1]{\mathrm{Re}\left[#1\right]}      % Real Part of a complex variable
+\renewcommand{\Im}[1]{\mathrm{Im}\left[#1\right]}      % Imaginary Part of a complex variable
 \newcommand{\R}{\mathbb{R}}                              % Set of Real Numbers
 \newcommand{\C}{\mathbb{C}}                              % Set of Complex Numbers
 \newcommand{\I}{\mat{I}}                                 % Identity Matrix
