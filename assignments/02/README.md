@@ -1,0 +1,27 @@
+# Übungsordner
+
+`main.tex` ist der Einstieg für das gemeinsame Abgabeprotokoll. Dort stehen
+die Angaben zum Blatt und zum Team sowie die Reihenfolge der Aufgaben.
+
+## PDF bauen
+
+Im Ordner dieses Aufgabenblatts mit TeX Live oder MacTeX ausführen.
+Die mitgelieferte `latexmkrc` ergänzt den Suchpfad für lokale TeX-Pakete
+automatisch; eine manuelle Umgebungsvariable ist nicht erforderlich.
+In VS Code ist die LaTeX-Workshop-Rezeptur `latexmk (LuaLaTeX)` dafür
+konfiguriert und wird beim Speichern mit Strg+S ausgeführt.
+
+```sh
+latexmk -lualatex -halt-on-error -outdir=build main.tex
+```
+
+Das gemeinsame PDF liegt danach unter `build/main.pdf`.
+
+## Nächstes Aufgabenblatt beginnen
+
+Den zuletzt verwendeten Übungsordner unter der nächsten Nummer kopieren.
+Im neuen Ordner die Angaben und `\input`-Zeilen in `main.tex` anpassen, die
+Aufgabenabschnitte durch die neuen ersetzen und alte Skripte, Abbildungen
+und gegebenenfalls den `build/`-Ordner aus der Kopie entfernen. Danach das
+PDF erneut bauen. Verbesserungen an der Struktur können direkt in der
+laufenden Übung vorgenommen werden und gehen beim nächsten Kopieren mit.

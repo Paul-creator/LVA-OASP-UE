@@ -1,0 +1,22 @@
+use Cwd qw(abs_path);
+use File::Spec;
+
+my $source_dir = abs_path('.');
+my $typesetting_dir = abs_path(File::Spec->catdir($source_dir, '..', '..', 'typesetting'));
+die "Cannot locate assignment or repository typesetting directory\n"
+    unless defined $source_dir && defined $typesetting_dir;
+
+if ($^O eq 'msys') {
+    for ($source_dir, $typesetting_dir) {
+        s{^/([A-Za-z])(?=/)}{uc($1) . ':'}e;
+    }
+}
+
+my $path_sep = $^O =~ /^(?:MSWin32|msys)$/ ? ';' : ':';
+my $existing_texinputs = $ENV{TEXINPUTS} // '';
+$ENV{TEXINPUTS} = $source_dir
+    . $path_sep
+    . $typesetting_dir
+    . $path_sep
+    . $existing_texinputs
+    . $path_sep;
