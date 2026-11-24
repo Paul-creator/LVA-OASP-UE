@@ -10,3 +10,88 @@ variance $\sigma^2$ and $r > 0$ is known.
 \end{enumerate}
 \end{note-block}
 
+\subsection{CRLB for A}
+
+\begin{theorem-block}[Cramér-Rao Lower Bound]
+\begin{equation}
+    \Var{\hat A} \geq \dfrac{1}{-\E{\pnd[\ln(p(\vec{x};A))]{2}{A}}} = \frac{1}{I(A)}
+\end{equation} 
+\end{theorem-block}
+
+For \acs{WGN} with zero mean and known variance $\sigma^2_w$, each element in $w[n]$ is sampled from the \acs{PDF}
+\begin{equation}
+    p(w[n]) = \frac{1}{\sqrt{2\pi\sigma_w^2}}\exp{-\frac{w^2[n]}{2\sigma_w^2}}
+\end{equation}
+
+
+so for the model of $x[n]$, the distribution is centered around the given value $A r^n$ for each $n$:
+\begin{equation}
+    p(x[n];A) = \frac{1}{\sqrt{2\pi\sigma_w^2}} \exp{-\frac{(x[n] - Ar^n)^2}{2\sigma_w^2}}
+\end{equation}
+
+The next step is to calculate the Likelihood-function, which is the joint probability of $p(x[n];A)$ for all $n$. We assume the \acs{WGN} is independent, so
+\begin{align*}
+    p(\vec{x};A)
+    &= \prod_{n=0}^{N-1} p(x[n];A) \\
+    &= \prod_{n=0}^{N-1} \frac{1}{\sqrt{2\pi\sigma_w^2}} \exp{-\frac{(x[n] - Ar^n)^2}{2\sigma_w^2}} \\
+    &= \frac{1}{(2\pi\sigma_w^2)^{N/2}} \exp{-\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} (x[n] - Ar^n)^2}
+\end{align*}
+
+Log-Likelihood function
+\begin{align*}
+    \ln(p(\vec{x};A)) = -\frac{N}{2}\ln(2\pi \sigma^2_w) -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} (x[n] - Ar^n)^2 
+\end{align*}
+Differentiating the Log-Likelihood Function
+\begin{align}
+    \pd[\ln(p(\vec{x};A))]{A}
+    &= -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} 2(x[n] - Ar^n) (-r^n)\notag \\
+    &= \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} (x[n]r^n - Ar^{2n})\label{eq:derivative-lnp}
+\end{align}
+Second Derivative of the Log Likelihood Function
+\begin{equation}
+    \pnd[\ln(p(\vec{x};A))]{2}{A} = -\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}
+\end{equation}
+Since the expression is purely deterministic, the Expected value of the expression is the expression itself. Therefor the Fisher information would be
+\begin{align}
+    I(A) &= -\E{\pnd[\ln(p(\vec{x};A))]{2}{A}}\notag \\
+    &= -\E{-\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}} = \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}\label{eq:fisher-information}
+\end{align}
+
+Finally, the lower bound for the variance is
+\begin{boxed-block}
+\begin{equation}
+    \Var{\hat A} \geq \frac{1}{I(A)} = \frac{\sigma_w^2}{\sum_{n=0}^{N-1}r^{2n}}
+\end{equation}
+\end{boxed-block}
+
+\subsection{Efficient Estimator}
+
+We want to find an estimator $g(\vec{x})$ such that
+\begin{equation}
+    \pd[\ln(p(\vec{x};A))]{A}=I(A)(g(\vec{x})-A)
+\end{equation}
+Using \autoref{eq:derivative-lnp} on the left side and the Fisher Information from \autoref{eq:fisher-information}, we get
+\begin{align*}
+\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} x[n]r^n - Ar^{2n}
+    &\overset{!}{=} \left(\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}\right)(g(\vec{x})-A) \\
+\sum_{n=0}^{N-1} (x[n]r^n - Ar^{2n})
+    &\overset{!}{=} \sum_{n=0}^{N-1} (g(\vec{x})r^{2n}-Ar^{2n}) \\
+    \sum_{n=0}^{N-1} \left(\frac{x[n]}{r^{n}}r^{2n} - Ar^{2n}\right)
+    &\overset{!}{=} \sum_{n=0}^{N-1} (g(\vec{x})r^{2n}-Ar^{2n})
+\end{align*}
+By comparison, we get
+\begin{boxed-block}
+\begin{equation}
+g(\vec{x}) = \frac{x[n]}{r^{n}} = A + \frac{w[n]}{r^n}
+\end{equation}
+\end{boxed-block}
+And therefor, an efficient estimator exist. The variance of the estimator is
+\begin{align*}
+    \Var{g(\vec{x})} =\Var{A + \frac{w[n]}{r^n}}
+\end{align*}
+Since $\Var{\alpha X + \beta} = \alpha^2\Var{X}$ with $\alpha = \sfrac{1}{r^{n}}$, $\beta = A$ and the \acs{RV} $w[n] = X$
+\begin{boxed-block}
+\begin{equation}
+    \Var{g(\vec{x})} = \frac{1}{r^{2n}}\Var{w[n]} =\frac{\sigma_w^2}{r^{2n}}
+\end{equation}
+\end{boxed-block}
