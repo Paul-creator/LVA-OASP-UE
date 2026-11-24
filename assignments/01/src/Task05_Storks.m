@@ -1,5 +1,3 @@
-% https://de.mathworks.com/help/matlab/ref/table.html
-
 [rc, colors] = plotrc();
 
 function export(gcf, filename, size_cm)

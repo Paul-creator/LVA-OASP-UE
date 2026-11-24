@@ -60,7 +60,7 @@ mean_x1 = x1_vals * px1;
 mean_x2 = x2_vals * px2';
 meanVector = [mean_x1, mean_x2];
 
-% (c) auto-covariance matrix
+% (d) auto-covariance matrix
 y1_vals = x1_vals - mean_x1;
 y2_vals = x2_vals - mean_x2;
 
@@ -71,6 +71,11 @@ for i = 1:numel(y1_vals)
             [y1_vals(i), y2_vals(j)] * joint_pmf(i,j);
     end
 end
+
+% (d) correlation coefficient
+rho = Cxx(1,2) / sqrt(Cxx(1,1) * Cxx(2,2));
+
+%%%% Plots
 
 %% Joint PMF
 plotPMF(joint_pmf, x1_vals, x2_vals);
