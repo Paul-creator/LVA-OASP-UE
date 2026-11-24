@@ -39,16 +39,16 @@ Substituting this into the scalar product gives
 Fix \(k \in \{1,\ldots,N\}\). Since the entries \(A_{ij}\) are constant,
 the product rule gives
 \begin{align*}
-  \ppart[f]{x_k}
+  \pd[f]{x_k}
   &= \sum_{i=1}^{N}\sum_{j=1}^{N}
-       A_{ij}\ppart[x_i x_j]{x_k} \\
+       A_{ij}\pd[x_i x_j]{x_k} \\
   &= \sum_{i=1}^{N}\sum_{j=1}^{N} A_{ij}
-       \left(\ppart[x_i]{x_k}x_j
-             + x_i\ppart[x_j]{x_k}\right) \\
+       \left(\pd[x_i]{x_k}x_j
+             + x_i\pd[x_j]{x_k}\right) \\
   &= \sum_{i=1}^{N}\sum_{j=1}^{N} A_{ij}
        \left(\delta_{ik}x_j+x_i\delta_{jk}\right)
        \quad
-       \left(\ppart[x_i]{x_k}
+       \left(\pd[x_i]{x_k}
        = \delta_{ik}
        = \begin{cases}
            1, & i=k,\\
@@ -59,7 +59,7 @@ the product rule gives
 The first delta selects row \(k\) and the second
 selects column \(k\). By symmetry, \(A_{ik}=A_{ki}\), so
 \[
-  \ppart[f]{x_k}
+  \pd[f]{x_k}
   = \sum_{j=1}^{N} A_{kj}x_j + \sum_{i=1}^{N} A_{ki}x_i
   = 2\sum_{j=1}^{N} A_{kj}x_j
   = 2(\mat{A}\vec{x})_k.

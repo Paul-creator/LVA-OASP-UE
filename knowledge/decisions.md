@@ -29,6 +29,6 @@
 - Kovarianz: `\Cov{a}{b}` statt `\operatorname{Cov}(a,b)`.
 - Korrelation: `\Corr{a}{b}` statt `\operatorname{Corr}(a,b)`.
 - Betragsfunktion: `\abs{...}` statt `|...|` bzw. `\left|...\right|`.
-- Partielle Ableitungen: `\ppart[f]{x}` statt `\frac{\partial f}{\partial x}`. Das erste optionale Argument ist die Funktion, das zweite die Variable.
+- Partielle Ableitungen: `\pd[f]{x}` statt `\frac{\partial f}{\partial x}`. Das erste optionale Argument ist die Funktion, das zweite die Variable.
 - Standardmengen und Operatoren: `\R`, `\C`, `\T`, `\D`, `\I`.
 - Für die Dokumentation und alle zukünftigen Aufgaben gilt: Wenn in einem Prompt oder in einer Aufgabenstellung nach mathematischer Notation gefragt wird, sollen die Paketbefehle aus [typesetting/exercises.sty](../typesetting/exercises.sty) verwendet werden, bevor auf Standard-LaTeX-Primitive zurückgegriffen wird.
