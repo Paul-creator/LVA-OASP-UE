@@ -19,3 +19,13 @@ Die lokale `latexmkrc` ergänzt den Suchpfad zu `typesetting/`. Das PDF liegt be
 ## Weitere Aufgabenblätter
 
 Diesen Ordner unter der nächsten Nummer kopieren. Aufgabenblatt, Titel, Blattnummer, Datum und Aufgabenabschnitte anpassen. Übernommene Lösungen, Skripte, Abbildungen und Build-Ausgaben in der neuen Kopie bereinigen.
+Das gemeinsame PDF liegt danach unter `build/main.pdf`.
+
+## Nächstes Aufgabenblatt beginnen
+
+Den zuletzt verwendeten Übungsordner unter der nächsten Nummer kopieren.
+Im neuen Ordner die Angaben und `\input`-Zeilen in `main.tex` anpassen, die
+Aufgabenabschnitte durch die neuen ersetzen und alte Skripte, Abbildungen
+und gegebenenfalls den `build/`-Ordner aus der Kopie entfernen. Danach das
+PDF erneut bauen. Verbesserungen an der Struktur können direkt in der
+laufenden Übung vorgenommen werden und gehen beim nächsten Kopieren mit.
