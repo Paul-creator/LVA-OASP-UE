@@ -8,3 +8,62 @@ The data $x[n] = r^n + w[n]$ for $n = 0, 1, \ldots , N - 1$ are observed, where 
     \item Does an efficient estimator exist and if so find its variance?
 \end{enumerate}
 \end{note-block}
+
+We arrive at the Log-Likelihood function in the same way as for \autoref{eq:log-likelihood-A}, but for the parameter $r$
+\begin{align}
+    \ln(p(\vec{x};r)) = -\frac{N}{2}\ln(2\pi \sigma^2_w) -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} (x[n] - r^n)^2 \label{eq:log-likelihood-r}
+\end{align}
+First Derivative
+\begin{align}
+    \pd[\ln(p(\vec{x};r))]{r}
+    &= -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} 2(x[n] - r^n) (-nr^{n-1})\notag \\
+    &= \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} (nx[n]r^{n-1} - nr^{2n-1}) \label{eq:dL-r}
+\end{align}
+Second Derivative of the Log Likelihood Function
+\begin{align}
+    \pnd[\ln(p(\vec{x};r))]{2}{r}
+    &= \frac{1}{\sigma_w^2} \sum_{n=0}^{N-1} (n(n-1)x[n]r^{n-2} - n(2n-1)r^{2n-2})
+\end{align}
+Fisher Information
+\begin{align*}
+    I(r) = -\E{\pnd[\ln(p(\vec{x};r))]{2}{r}}
+    = -\frac{1}{\sigma_w^2}
+    \E{\sum_{n=0}^{N-1} (n(n-1)x[n]r^{n-2} - n(2n-1)r^{2n-2})}
+\end{align*}
+All terms, except $x[n]$ are deterministic. From the linearity of the expected value operator and $\E{x[n]}=r^n$, because $w[n]$ has zero mean, follows.
+\begin{align}
+    I(r) 
+    &= \frac{1}{\sigma_w^2} \sum_{n=0}^{N-1} (n(2n-1)r^{2n-2} - n(n-1)\E{x[n]}r^{n-2}) \notag \\
+    &= \frac{1}{\sigma_w^2} \sum_{n=0}^{N-1} (n(2n-1)r^{2n-2} - n(n-1)r^{2n-2}) \notag \\
+    &= \frac{1}{\sigma_w^2} \sum_{n=0}^{N-1} (n(2n-1-n+1)r^{2n-2}) \notag \\
+    &= \frac{1}{\sigma_w^2} \sum_{n=0}^{N-1} n^2r^{2n-2} \label{eq:fisher-information-r}
+\end{align}
+
+The \acs{CRLB} is
+\begin{boxed-block}
+\begin{equation}
+\Var{\hat r} \geq \frac{1}{I(r)} = \frac{\sigma_w^2}{\sum_{n=0}^{N-1} n^2r^{2n-2}}
+\end{equation}
+\end{boxed-block}
+
+\subsection{Efficient Estimator}
+
+Again, we want to find an estimator $g(\vec{x})$ such that
+\begin{equation}
+    \pd[\ln(p(\vec{x};r))]{r}=I(r)(g(\vec{x})-r)
+\end{equation}
+
+Using \autoref{eq:dL-r} on the left side and the Fisher Information from \autoref{eq:fisher-information-r}, we get
+\begin{align*}
+    \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} (nx[n]r^{n-1} - nr^{2n-1})
+    &\overset{!}{=} \frac{1}{\sigma_w^2} \left(\sum_{n=0}^{N-1} n^2r^{2n-2}\right)(g(\vec{x}) - r) \\
+\end{align*}
+Solving for $g(\vec{x})$ would give
+\[
+g_{N=1}(\vec x) = \frac{\sum_{n=0}^{N-1} (nx[n]r^{n-1} - nr^{2n-1})}{\sum_{n=0}^{N-1} (nr^{2n-1})^2} + r
+\]
+which is a function of the true, unknown value of $r$, so the estimator doesn't work. An exception for this, is when $N = 2$:
+\[
+g(\vec{x}) = \frac{x[1]r^0 - r}{(r^0)^2} - r = x[1]
+\]
+So for this case, $x[1]=\hat r$ is the best estimate for $r$. The variance for this estimator is simply $\sigma_w^2$.
