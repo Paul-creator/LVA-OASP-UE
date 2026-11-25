@@ -1,5 +1,5 @@
 % !TEX root = ../main.tex
-\section{Exponentially increasing/decaying signal}
+\section{Exponentially increasing/decaying signal}\label{sec:task02}
 
 \begin{note-block}
 The data $x[n] = A r^n + w[n]$ for $n = 0, 1, \ldots, N - 1$ are observed, where $w[n]$ is WGN with
@@ -38,9 +38,9 @@ The next step is to calculate the Likelihood-function, which is the joint probab
 \end{align*}
 
 Log-Likelihood function
-\begin{align*}
-    \ln(p(\vec{x};A)) = -\frac{N}{2}\ln(2\pi \sigma^2_w) -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} (x[n] - Ar^n)^2 
-\end{align*}
+\begin{align}
+    \ln(p(\vec{x};A)) = -\frac{N}{2}\ln(2\pi \sigma^2_w) -\frac{1}{2\sigma_w^2}\sum_{n=0}^{N-1} (x[n] - Ar^n)^2 \label{eq:log-likelihood-A}
+\end{align}
 Differentiating the Log-Likelihood Function
 \begin{align}
     \pd[\ln(p(\vec{x};A))]{A}
@@ -54,7 +54,7 @@ Second Derivative of the Log Likelihood Function
 Since the expression is purely deterministic, the Expected value of the expression is the expression itself. Therefor the Fisher information would be
 \begin{align}
     I(A) &= -\E{\pnd[\ln(p(\vec{x};A))]{2}{A}}\notag \\
-    &= -\E{-\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}} = \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}\label{eq:fisher-information}
+    &= -\E{-\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}} = \frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}\label{eq:fisher-information-A}
 \end{align}
 
 Finally, the lower bound for the variance is
@@ -70,28 +70,40 @@ We want to find an estimator $g(\vec{x})$ such that
 \begin{equation}
     \pd[\ln(p(\vec{x};A))]{A}=I(A)(g(\vec{x})-A)
 \end{equation}
-Using \autoref{eq:derivative-lnp} on the left side and the Fisher Information from \autoref{eq:fisher-information}, we get
+Using \autoref{eq:derivative-lnp} on the left side and the Fisher Information from \autoref{eq:fisher-information-A}, we get
 \begin{align*}
-\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} x[n]r^n - Ar^{2n}
-    &\overset{!}{=} \left(\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} r^{2n}\right)(g(\vec{x})-A) \\
-\sum_{n=0}^{N-1} (x[n]r^n - Ar^{2n})
-    &\overset{!}{=} \sum_{n=0}^{N-1} (g(\vec{x})r^{2n}-Ar^{2n}) \\
-    \sum_{n=0}^{N-1} \left(\frac{x[n]}{r^{n}}r^{2n} - Ar^{2n}\right)
-    &\overset{!}{=} \sum_{n=0}^{N-1} (g(\vec{x})r^{2n}-Ar^{2n})
+\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} \left(x[n]r^n - Ar^{2n}\right)
+    &\overset{!}{=} \frac{1}{\sigma_w^2}\left(\sum_{n=0}^{N-1} r^{2n}\right)(g(\vec{x})-A) \\
+\frac{1}{\sigma_w^2}\sum_{n=0}^{N-1} \left(x[n]r^n - Ar^{2n}\right) 
+    &= \frac{1}{\sigma_w^2}\left(\sum_{n=0}^{N-1} x[n]r^n - A\sum_{n=0}^{N-1} r^{2n}\right) \\
+    &= \frac{1}{\sigma_w^2}\left(\sum_{n=0}^{N-1} r^{2n}\right)\left(\frac{\sum_{n=0}^{N-1}x[n]r^n}{\sum_{n=0}^{N-1} r^{2n}}  - A\right)
 \end{align*}
 By comparison, we get
 \begin{boxed-block}
 \begin{equation}
-g(\vec{x}) = \frac{x[n]}{r^{n}} = A + \frac{w[n]}{r^n}
+    \hat A = g(\vec{x}) = \frac{\sum_{n=0}^{N-1} x[n]r^n}{\sum_{n=0}^{N-1} r^{2n}}
+    = A + \frac{\sum_{n=0}^{N-1}w[n]r^n}{\sum_{n=0}^{N-1} r^{2n}}
 \end{equation}
 \end{boxed-block}
-And therefor, an efficient estimator exist. The variance of the estimator is
+So an efficient estimator exists, since we found a $g(\vec{x})$
 \begin{align*}
-    \Var{g(\vec{x})} =\Var{A + \frac{w[n]}{r^n}}
+    \Var{\hat A}
+    &= \Var{A + \frac{\sum_{n=0}^{N-1}w[n]r^n}{\sum_{n=0}^{N-1} r^{2n}}}
 \end{align*}
-Since $\Var{\alpha X + \beta} = \alpha^2\Var{X}$ with $\alpha = \sfrac{1}{r^{n}}$, $\beta = A$ and the \acs{RV} $w[n] = X$
+Since $\Var{\alpha X + \beta} = \alpha^2\Var{X}$, we can simplify the expression
+\begin{align*}
+    = \frac{1}{(\sum_{n=0}^{N-1} r^{2n})^2} \Var{\sum_{n=0}^{N-1}w[n]r^n }
+\end{align*}
+$w[n]$ is assumed to be \acs{i.i.d.}, so $w[n]$ has no covariances between different $n$ and the variance is not a function of $n$.
+\begin{align*}
+    &= \frac{1}{(\sum_{n=0}^{N-1} r^{2n})^2} \sum_{n=0}^{N-1} \Var{w[n]r^{n}} \\
+    &= \frac{1}{(\sum_{n=0}^{N-1} r^{2n})^2} \sum_{n=0}^{N-1} r^{2n}\Var{w[n]} \\
+    &= \sigma_w^2\frac{\sum_{n=0}^{N-1} r^{2n}}{(\sum_{n=0}^{N-1} r^{2n})^2}
+\end{align*}
+Finally, we can see, that the Estimator for $A$ attains the CRLB exactly.
 \begin{boxed-block}
 \begin{equation}
-    \Var{g(\vec{x})} = \frac{1}{r^{2n}}\Var{w[n]} =\frac{\sigma_w^2}{r^{2n}}
+    \Var{\hat A} = \frac{\sigma_w^2}{\sum_{n=0}^{N-1} r^{2n}}
+    = \frac{1}{I(A)}
 \end{equation}
 \end{boxed-block}
